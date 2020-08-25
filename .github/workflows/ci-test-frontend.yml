@@ -24,6 +24,13 @@ jobs:
       - run: npm ci --loglevel warn
         working-directory: ./frontend
 
+      - uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/frontend/node_modules/.cache
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - run: npx run-p check lint
         working-directory: ./frontend
 
