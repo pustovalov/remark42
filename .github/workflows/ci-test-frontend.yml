@@ -26,7 +26,7 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          path: ${{ github.workspace }}/frontend/node_modules/.cache
+          path: ${{ github.workspace }}/frontend/node_modules/.cacheee
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
