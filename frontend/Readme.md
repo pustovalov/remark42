@@ -1,7 +1,7 @@
 # Frontend guide
 
 1
-2345678
+23456789
 ### Code Style
 
 - project uses typescript to statically analyze code
