@@ -2,6 +2,8 @@
 
 ### Code Style
 
+with cache
+
 - project uses typescript to statically analyze code
 - project uses `eslint` and `stylelint` to check frontend code. You can manually run via `npm run lint`.
 - git hooks (via husky) installed automatically on `npm install` and check and try to fix code style if possible, otherwise commit will be rejected
