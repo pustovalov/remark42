@@ -28,9 +28,9 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/frontend/node_modules
-          key: ${{ runner.os }}-${{ matrix.node }}-node_modules-10-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-${{ matrix.node }}-node_modules-11-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.node }}-node_modules-10-
+            ${{ runner.os }}-${{ matrix.node }}-node_modules-11-
 
       - run: npm ci --loglevel warn
         working-directory: ./frontend
@@ -52,9 +52,9 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/frontend/node_modules
-          key: ${{ runner.os }}-${{ matrix.node }}-node_modules-10-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-${{ matrix.node }}-node_modules-11-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.node }}-node_modules-10-
+            ${{ runner.os }}-${{ matrix.node }}-node_modules-11-
 
       - uses: actions/cache@v2
         with:
@@ -82,9 +82,9 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/frontend/node_modules
-          key: ${{ runner.os }}-${{ matrix.node }}-node_modules-10-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-${{ matrix.node }}-node_modules-11-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.node }}-node_modules-10-
+            ${{ runner.os }}-${{ matrix.node }}-node_modules-11-
 
       - run: npx run-p lint
         working-directory: ./frontend
@@ -105,9 +105,9 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/frontend/node_modules
-          key: ${{ runner.os }}-${{ matrix.node }}-node_modules-10-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-${{ matrix.node }}-node_modules-11-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.node }}-node_modules-10-
+            ${{ runner.os }}-${{ matrix.node }}-node_modules-11-
 
       - run: npm run test
         working-directory: ./frontend
