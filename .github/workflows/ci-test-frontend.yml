@@ -13,53 +13,101 @@ on:
       - 'frontend/**'
 
 jobs:
-  frontend-check:
+  frontend-node_modules:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [12.16]
 
     steps:
       - uses: actions/checkout@v2
-
       - uses: actions/setup-node@v1
         with:
-          node-version: '12.16'
+          node-version: ${{ matrix.node }}
+
+      - uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/frontend/node_modules
+          key: ${{ runner.os }}-${{ matrix.node }}-node_modules_-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node }}-node_modules-
 
       - run: npm ci --loglevel warn
         working-directory: ./frontend
 
+
+  frontend-check:
+    needs: frontend-node_modules
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [12.16]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/frontend/node_modules
+          key: ${{ runner.os }}-${{ matrix.node }}-node_modules_-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node }}-node_modules-
+
       - uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/frontend/node_modules/.cache
-          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-${{ matrix.node }}-build-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-${{ matrix.node }}-build-
 
       - run: npx run-p check
         working-directory: ./frontend
 
   frontend-lint:
+    needs: frontend-node_modules
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [12.16]
 
     steps:
       - uses: actions/checkout@v2
-
       - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
 
-      - run: npm ci --loglevel warn
-        working-directory: ./frontend
+      - uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/frontend/node_modules
+          key: ${{ runner.os }}-${{ matrix.node }}-node_modules_-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node }}-node_modules-
 
       - run: npx run-p lint
         working-directory: ./frontend
 
   frontend-test:
+    needs: frontend-node_modules
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [12.16]
 
     steps:
       - uses: actions/checkout@v2
-
       - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
 
-      - run: npm ci --loglevel warn
-        working-directory: ./frontend
+      - uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/frontend/node_modules
+          key: ${{ runner.os }}-${{ matrix.node }}-node_modules_-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node }}-node_modules-
 
       - run: npm run test
         working-directory: ./frontend
