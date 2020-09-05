@@ -7,7 +7,7 @@
 
 12
 
-1
+12
 ### Code Style
 
 - project uses typescript to statically analyze code
