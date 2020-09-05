@@ -7,7 +7,7 @@
 
 123456789
 
-12345678
+123456789
 ### Code Style
 
 - project uses typescript to statically analyze code
