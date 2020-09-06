@@ -74,8 +74,8 @@ jobs:
       - run: npm run test:coverage
         working-directory: ./frontend
 
-      - name: submit coverage
-        run: node node_modules/.bin/coveralls < coverage/lcov.info
-        working-directory: ./frontend
-        env:
-          COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          base-path: ./frontend
