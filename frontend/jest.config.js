@@ -1,4 +1,5 @@
 module.exports = {
+  collectCoverage: true,
   roots: ['<rootDir>/app/'],
   transform: {
     '^.+\\.ts(x?)$': 'ts-jest',
