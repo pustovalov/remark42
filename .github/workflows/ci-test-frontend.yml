@@ -74,6 +74,13 @@ jobs:
       - run: npm run test:coverage
         working-directory: ./frontend
 
+      - name: check
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: |
+            ./frontend/coverage
+
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
